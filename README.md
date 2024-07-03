@@ -21,18 +21,18 @@ Retrieves weather data for a specified city.
 - `city` (string, required): The name of the city for which to retrieve weather data.
 
 #### Example
-\`\`\`bash
+```bash
 curl -X GET "http://localhost:3000/weather/tokyo"
-\`\`\`
+```
 
 #### Response
-\`\`\`json
+```json
 {
   "temperature": 25,
   "humidity": 60,
   "wind_speed": 5
 }
-\`\`\`
+```
 
 ## Setting Up the Application
 ### Prerequisites
@@ -43,38 +43,38 @@ curl -X GET "http://localhost:3000/weather/tokyo"
 
 ### Installation
 1. Clone the repository.
-   \`\`\`bash
+   ```bash
    git clone https://github.com/TuKDoan/tablecheck-customer-reliability-take-home.git
    cd tablecheck-customer-reliability-take-home
-   \`\`\`
+   ```
 
 2. Install dependencies.
-   \`\`\`bash
+   ```bash
    bundle install
-   \`\`\`
+   ```
 
 3. Set up the database.
-   \`\`\`bash
+   ```bash
    rails db:create
    rails db:migrate
-   \`\`\`
+   ```
 
 4. Set up environment variables.
    Create a `.env` file and add your OpenWeatherMap API key.
-   \`\`\`env
+   ```env
    OPENWEATHERMAP_API_KEY=your_api_key
-   \`\`\`
+   ```
 
 5. Run the application.
-   \`\`\`bash
+   ```bash
    rails server
-   \`\`\`
+   ```
 
 ## Running Tests
 To run the tests for this application, use the following command:
-\`\`\`bash
+```bash
 bundle exec rspec
-\`\`\`
+```
 
 ## Monitoring Integration
 The application integrates with OpenTelemetry to collect metrics and traces. The configuration can be found in `config/initializers/opentelemetry.rb`.
