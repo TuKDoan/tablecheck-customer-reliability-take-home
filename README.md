@@ -39,7 +39,8 @@ curl -X GET "http://localhost:3000/weather/tokyo"
 - Ruby
 - Rails
 - OpenWeatherMap API key
-   To make an API key go here and create an account and API key: https://home.openweathermap.org/
+
+  To make an API key go here and create an account and API key: https://home.openweathermap.org/
 
 ### Installation
 1. Clone the repository.
