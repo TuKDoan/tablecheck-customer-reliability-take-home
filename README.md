@@ -1,33 +1,93 @@
-# TableCheck Customer Reliability Take Home Project
-## Project: Simple Weather API and Monitoring Integration
+# Simple Weather API and Monitoring Integration
 
-### Overview:
+## Overview
+This is a simple Ruby on Rails application that exposes an API for retrieving weather data for a given city. The application integrates with OpenTelemetry for monitoring purposes.
 
-Create a simple Ruby on Rails application that exposes an API for retrieving weather data for a given city. The application should also include integration with OpenTelemetry for monitoring purposes. Additionally, write a brief documentation that explains how the API works and potential use cases for this API.
+## Use Cases
+- Find the weather of a current user's location.
+- Track weather changes over time for a specific location.
+- Figure out the weather if you can't be bothered to go outside.
 
-### Requirements:
+## Features
+- Retrieve weather data for a given city (temperature, humidity, wind speed).
+- Utilizes the OpenWeatherMap API to fetch weather data.
+- Integrates with OpenTelemetry to collect metrics and traces.
 
-1. Design and implement a Ruby on Rails application with the following features:
-   - An endpoint to retrieve weather data for a given city (e.g., temperature, humidity, wind speed)
-   - Utilize a public weather API, such as OpenWeatherMap, to fetch the weather data
+## API Endpoint
+### GET /weather
+Retrieves weather data for a specified city.
 
-2. Integrate OpenTelemetry for monitoring-in-code:
-   - Set up OpenTelemetry to collect metrics and traces from the application
-   - Implement custom metrics and traces for key performance indicators (e.g., weather data requests per minute, average response time)
+#### Request
+- `city` (string, required): The name of the city for which to retrieve weather data.
 
-3. Write clear and concise documentation that includes:
-   - An overview of the application, its purpose, and potential use cases
-   - API endpoint, request/response formats, and examples of usage
-   - A simple guide on how to set up and run the application locally
+#### Example
+\`\`\`bash
+curl -X GET "http://localhost:3000/weather/tokyo"
+\`\`\`
 
-4. Demonstrate strong ability to learn, document, and articulate customer organization's needs by providing recommendations on how the API could be improved or extended to cater to a broader audience.
+#### Response
+\`\`\`json
+{
+  "temperature": 25,
+  "humidity": 60,
+  "wind_speed": 5
+}
+\`\`\`
 
-### Evaluation Criteria:
+## Setting Up the Application
+### Prerequisites
+- Ruby
+- Rails
+- OpenWeatherMap API key
+   To make an API key go here and create an account and API key: https://home.openweathermap.org/
 
-The candidate's take-home project will be evaluated based on the following criteria:
+### Installation
+1. Clone the repository.
+   \`\`\`bash
+   git clone https://github.com/TuKDoan/tablecheck-customer-reliability-take-home.git
+   cd tablecheck-customer-reliability-take-home
+   \`\`\`
 
-1. Functionality: The application should work as intended, with the API endpoint functional and correctly returning weather data.
-2. Code quality: The code should be clean, well-organized, and follow best practices for Ruby on Rails development.
-3. Monitoring integration: The application should successfully integrate OpenTelemetry for monitoring-in-code, with custom metrics and traces as required.
-4. Documentation: The documentation should be clear, concise, and informative, demonstrating the candidate's ability to communicate effectively with both internal and external stakeholders.
-5. Suggestions for improvement: The candidate should provide thoughtful recommendations for how the API could be improved or extended to cater to a broader audience.
+2. Install dependencies.
+   \`\`\`bash
+   bundle install
+   \`\`\`
+
+3. Set up the database.
+   \`\`\`bash
+   rails db:create
+   rails db:migrate
+   \`\`\`
+
+4. Set up environment variables.
+   Create a `.env` file and add your OpenWeatherMap API key.
+   \`\`\`env
+   OPENWEATHERMAP_API_KEY=your_api_key
+   \`\`\`
+
+5. Run the application.
+   \`\`\`bash
+   rails server
+   \`\`\`
+
+## Running Tests
+To run the tests for this application, use the following command:
+\`\`\`bash
+bundle exec rspec
+\`\`\`
+
+## Monitoring Integration
+The application integrates with OpenTelemetry to collect metrics and traces. The configuration can be found in `config/initializers/opentelemetry.rb`.
+
+I was unable to find the time to include custom metrics (e.g., weather data requests per minute, average response time). However, the traces are there and can always add the functionality.
+
+## Potential Improvements
+- Add support for additional weather data fields.
+- Implement caching to reduce the number of API requests.
+- Add rate limiting to handle excessive requests.
+- Provide support for multiple weather APIs to improve reliability.
+- Export traces to a backend such as Prometheus.
+- Support for multiple languages.
+- Support for Zip-Codes (America)
+- Support for city look up with country code.
+- Support for different units of measurement.
